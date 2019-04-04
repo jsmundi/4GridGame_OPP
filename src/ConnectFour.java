@@ -1,17 +1,16 @@
 import java.util.Random;
 
-public class TicTacToe extends GridGame {
+public class ConnectFour extends GridGame {
 
-
+    // ANSI valeus for colors
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
 
-
-    private Grid newGame;
-    private int gridN = 4;
+    private Grid newGame; // Game board
+    private int gridN = 4; // Grid size
 
     @Override
     public void initializeBoard() {
@@ -22,10 +21,12 @@ public class TicTacToe extends GridGame {
     public int checkCol() {
 
         for (int i = 0; i < gridN; i++) {
-            if ((newGame.getCell(0, i) == 1 && newGame.getCell(1, i) == 1 && newGame.getCell(2, i) == 1 && newGame.getCell(3, i) == 1)) {
+            if ((newGame.getCell(0, i) == 1 && newGame.getCell(1, i) == 1 && newGame.getCell(2, i) == 1
+                    && newGame.getCell(3, i) == 1)) {
                 return 1;
 
-            } else if ((newGame.getCell(0, i) == 2 && newGame.getCell(1, i) == 2 && newGame.getCell(2, i) == 2 && newGame.getCell(3, i) == 2)) {
+            } else if ((newGame.getCell(0, i) == 2 && newGame.getCell(1, i) == 2 && newGame.getCell(2, i) == 2
+                    && newGame.getCell(3, i) == 2)) {
                 return 2;
             }
         }
@@ -36,10 +37,12 @@ public class TicTacToe extends GridGame {
     public int checkRow() {
 
         for (int i = 0; i < gridN; i++) {
-            if ((newGame.getCell(i, 0) == 1 && newGame.getCell(i, 1) == 1 && newGame.getCell(i, 2) == 1) && newGame.getCell(i, 3) == 1) {
+            if ((newGame.getCell(i, 0) == 1 && newGame.getCell(i, 1) == 1 && newGame.getCell(i, 2) == 1)
+                    && newGame.getCell(i, 3) == 1) {
                 return 1;
 
-            } else if ((newGame.getCell(i, 0) == 2 && newGame.getCell(i, 1) == 2 && newGame.getCell(i, 2) == 2 && newGame.getCell(i, 3) == 2)) {
+            } else if ((newGame.getCell(i, 0) == 2 && newGame.getCell(i, 1) == 2 && newGame.getCell(i, 2) == 2
+                    && newGame.getCell(i, 3) == 2)) {
                 return 2;
             }
         }
@@ -48,11 +51,15 @@ public class TicTacToe extends GridGame {
 
     @Override
     public int checkDig() {
-        if ((newGame.getCell(0, 0) == 1 && newGame.getCell(1, 1) == 1 && newGame.getCell(2, 2) == 1 && newGame.getCell(3, 3) == 1)
-                || (newGame.getCell(0, 3) == 1 && newGame.getCell(1, 2) == 1 && newGame.getCell(2, 1) == 1 && newGame.getCell(3, 0) == 1)) {
+        if ((newGame.getCell(0, 0) == 1 && newGame.getCell(1, 1) == 1 && newGame.getCell(2, 2) == 1
+                && newGame.getCell(3, 3) == 1)
+                || (newGame.getCell(0, 3) == 1 && newGame.getCell(1, 2) == 1 && newGame.getCell(2, 1) == 1
+                && newGame.getCell(3, 0) == 1)) {
             return 1;
-        } else if ((newGame.getCell(0, 0) == 2 && newGame.getCell(1, 1) == 2 && newGame.getCell(2, 2) == 2 && newGame.getCell(3, 3) == 2)
-                || (newGame.getCell(0, 3) == 2 && newGame.getCell(1, 2) == 2 && newGame.getCell(2, 1) == 2 && newGame.getCell(3, 0) == 2)) {
+        } else if ((newGame.getCell(0, 0) == 2 && newGame.getCell(1, 1) == 2 && newGame.getCell(2, 2) == 2
+                && newGame.getCell(3, 3) == 2)
+                || (newGame.getCell(0, 3) == 2 && newGame.getCell(1, 2) == 2 && newGame.getCell(2, 1) == 2
+                && newGame.getCell(3, 0) == 2)) {
             return 2;
         }
         return 0;
@@ -100,22 +107,21 @@ public class TicTacToe extends GridGame {
     }
 
     /*
-        The algorithm try's  to make a move to win first. If not possible the
-        board is set to original state. Then the algorithm try's to make a move for the
-        user to win. If not possible the board is reset to original state and a random
-        move is placed on the board where space is available.
+     * The algorithm try's to make a move to win first. If not possible the board is
+     * set to original state. Then the algorithm try's to make a move for the user
+     * to win. If not possible the board is reset to original state and a random
+     * move is placed on the board where space is available.
      */
     @Override
     public void placeMark(int player) {
 
-        int temp = 0;
+        int temp;
 
         if (player == 1) {
             temp = 2;
         } else {
             temp = 1;
         }
-
 
         for (int row = 0; row < gridN; row++) {
             for (int column = 0; column < gridN; column++) {
@@ -148,7 +154,7 @@ public class TicTacToe extends GridGame {
             int x = rand.nextInt(4);
             int y = rand.nextInt(4);
 
-            if (newGame.getCell(x, y) == 0) {   //Check if spot is empty
+            if (newGame.getCell(x, y) == 0) { // Check if spot is empty
                 placeMark(x, y, player);
                 return;
             }

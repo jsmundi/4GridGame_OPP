@@ -9,7 +9,6 @@ public class Grid {
         this.n = n;
         gameGrid = new int[n][n];
 
-
         for (int row = 0; row < n; row++) {
             for (int column = 0; column < n; column++) {
                 gameGrid[row][column] = 0;
@@ -25,7 +24,6 @@ public class Grid {
     // Store the given value in the designated cell
     public void setCell(int row, int col, int val) {
         gameGrid[row][col] = val;
-
     }
 
     // Return true if the designated cell is not empty
@@ -33,7 +31,7 @@ public class Grid {
         return gameGrid[row][col] != 0;
     }
 
-    //Set all cell values back to 0
+    // Set all cell values back to 0
     public void clear() {
 
         for (int row = 0; row < n; row++) {
